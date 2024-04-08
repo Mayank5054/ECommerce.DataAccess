@@ -17,3 +17,4 @@ C:\Users\sit433\dotnet\ECommerce.DataAccess\obj\Debug\net8.0\refint\ECommerce.Da
 C:\Users\sit433\dotnet\ECommerce.DataAccess\obj\Debug\net8.0\ECommerce.DataAccess.pdb
 C:\Users\sit433\dotnet\ECommerce.DataAccess\obj\Debug\net8.0\ECommerce.DataAccess.genruntimeconfig.cache
 C:\Users\sit433\dotnet\ECommerce.DataAccess\obj\Debug\net8.0\ref\ECommerce.DataAccess.dll
+C:\Users\sit433\dotnet\ECommerce.DataAccess\obj\Debug\net8.0\ECommerce.DataAccess.sourcelink.json
