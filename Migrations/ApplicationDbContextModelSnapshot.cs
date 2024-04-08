@@ -34,7 +34,8 @@ namespace ECommerce.DataAccess.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("CategoryId");
 
@@ -59,6 +60,38 @@ namespace ECommerce.DataAccess.Migrations
                             DisplayOrder = 3,
                             Name = "History"
                         });
+                });
+
+            modelBuilder.Entity("ECommerce.Models.Product", b =>
+                {
+                    b.Property<int>("BookId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BookTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("BookId");
+
+                    b.ToTable("Products");
                 });
 #pragma warning restore 612, 618
         }

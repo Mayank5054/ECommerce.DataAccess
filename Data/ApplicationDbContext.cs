@@ -10,7 +10,7 @@ namespace ECommerce.DataAccess.Data
 
         }
         public DbSet<Category> Categories { get; set; }
-
+        public DbSet<Product> Products { get; set; }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Category>().HasData(
@@ -18,6 +18,7 @@ namespace ECommerce.DataAccess.Data
         //        new Category { CategoryId = 2, Name = "Sci-Fi", DisplayOrder = 2 },
         //        new Category { CategoryId = 3, Name = "History", DisplayOrder = 3 }
         //        );
+        
         //    base.OnModelCreating(modelBuilder);
         //}
     }
