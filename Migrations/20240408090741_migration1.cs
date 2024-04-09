@@ -7,11 +7,25 @@
 namespace ECommerce.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class ProductModelAdded : Migration
+    public partial class migration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
@@ -22,11 +36,18 @@ namespace ECommerce.DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ISBN = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false)
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.BookId);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -38,6 +59,11 @@ namespace ECommerce.DataAccess.Migrations
                     { 2, 2, "Sci-Fi" },
                     { 3, 3, "History" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
@@ -46,20 +72,8 @@ namespace ECommerce.DataAccess.Migrations
             migrationBuilder.DropTable(
                 name: "Products");
 
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "CategoryId",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "CategoryId",
-                keyValue: 2);
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "CategoryId",
-                keyValue: 3);
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

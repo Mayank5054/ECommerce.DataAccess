@@ -78,6 +78,9 @@ namespace ECommerce.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -91,7 +94,20 @@ namespace ECommerce.DataAccess.Migrations
 
                     b.HasKey("BookId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ECommerce.Models.Product", b =>
+                {
+                    b.HasOne("ECommerce.Models.Category", "category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("category");
                 });
 #pragma warning restore 612, 618
         }
