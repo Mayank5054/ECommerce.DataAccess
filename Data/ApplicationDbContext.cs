@@ -3,7 +3,7 @@ using ECommerce.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace ECommerce.DataAccess.Data
 {
-    public class ApplicationDbContext :IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opt) : base(opt)
         {
@@ -11,6 +11,7 @@ namespace ECommerce.DataAccess.Data
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser>  ApplicationUsers{ get;set;}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
